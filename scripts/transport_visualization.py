@@ -3,23 +3,24 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 import contextily as ctx
-import json
-
-from scripts.transportation_test import transportation_info
+import pandas as pd
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from internals.tools import *
+from internals.tools import convert_coordinates
 
-metro_info, bus_info = transportation_info
+tube_df = pd.read_csv('../data/london_metro_stations.csv')
+tube_info = tube_df[["Station", "Latitude", "Longitude"]]
 
-with open("../data/london_restaurants.txt", "r") as f:
-    polarities = json.load(f)
+bus_df = pd.read_csv("../data/london_bus_stops.csv")
+bus_info = bus_df[["Stop_Name", "Location_Easting", "Location_Northing"]]
+converted_bus_info = convert_coordinates(bus_df)
 
-df = pd.DataFrame(polarities, columns=["polarity", "count", "lat", "lng"])
 plt.figure(figsize=(20, 20))
-ax = sns.scatterplot(x="lng", y="lat", hue="", data=df, palette="coolwarm")
+ax = sns.scatterplot(x="Longitude", y="Latitude", data=tube_info)
 
-ctx.add_basemap(ax, crs="EPSG:4326", zoom=12)
+# metro 9
+# bus 9
+ctx.add_basemap(ax, crs="EPSG:4326", zoom=9)
 
 plt.show()

@@ -1,5 +1,6 @@
 import pandas as pd
 from pyproj import Transformer
+import math
 
 from internals.wrapper import *
 
@@ -49,6 +50,24 @@ def convert_coordinates(df: pd.DataFrame) -> pd.DataFrame:
     })
 
     return result_df
+
+
+def haversine_distance(coord1: list, coord2: list) -> float:
+    r = 6371000
+
+    lat1, lon1 = coord1
+    lat2, lon2 = coord2
+
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+
+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    distance = r * c
+    return distance
 
 if __name__ == "__main__":
     print(get_reviews_of_place("42177"))
