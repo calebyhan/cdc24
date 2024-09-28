@@ -4,6 +4,8 @@ Caleb Han and Mason Mines
 
 [Devpost]()
 
+[Presentation](https://docs.google.com/presentation/d/1kyd4Mu57O2WiDp4WXCl7dfsmKFFIsag4-vKr7cl2rtA/edit?usp=sharing)
+
 ## Datasets used
 
 [Popular culture track - TourPedia API](http://tour-pedia.org/api/)

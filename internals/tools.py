@@ -53,6 +53,13 @@ def convert_coordinates(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def haversine_distance(coord1: list, coord2: list) -> float:
+    """
+    Calculate the haversine distance between two coordinates
+
+    :param coord1: The first coordinate as a list of latitude and longitude
+    :param coord2: The second coordinate as a list of latitude and longitude
+    :return: The distance between the two coordinates in meters
+    """
     r = 6371000
 
     lat1, lon1 = coord1
@@ -68,6 +75,3 @@ def haversine_distance(coord1: list, coord2: list) -> float:
 
     distance = r * c
     return distance
-
-if __name__ == "__main__":
-    print(get_reviews_of_place("42177"))
