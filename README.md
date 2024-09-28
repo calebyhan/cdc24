@@ -22,12 +22,31 @@ in comparison to its proximity to a public bus stop or a metro station.
 ## Data
 
 We used the TourPedia API to retrieve all restaurant data available in London. We then averaged the polarity for each restaurant.
-[insert graph here]
+The polarity is a measure of how positive or negative the reviews are for a restaurant. A 10 is the best review while a 0 is the worst. We also counted the number of reviews for each restaurant.
+
+### Polarity
+![Polarity](imgs/restaurant_polarity.png)
+
+### Number of reviews
+![Number of reviews](imgs/restaurant_count.png)
 
 We then found the closest bus stop and metro station to each restaurant using the London Bus Stops and London Metro Stations datasets.
 
-## Analysis
+### Metro
+![Metro](imgs/metro.png)
 
-We used a linear regression model to analyze the correlation between the number of reviews and the polarity of the restaurants in relation to their proximity to a bus stop or metro station.
+### Bus
+![Bus](imgs/bus.png)
 
 ## Results
+
+We found that restaurants closer to a bus stop or metro station tend to have a higher number of reviews and a higher polarity.
+
+### Metro
+
+![Metro number of reviews](imgs/review_number_metro.png)
+![Metro polarity](imgs/review_polarity_metro.png)
+
+### Bus
+![Bus number of reviews](imgs/review_number_bus.png)
+![Bus polarity](imgs/review_polarity_bus.png)
