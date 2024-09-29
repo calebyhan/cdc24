@@ -50,3 +50,7 @@ We found that restaurants closer to a bus stop or metro station tend to have a h
 ### Bus
 ![Bus number of reviews](imgs/review_number_bus.png)
 ![Bus polarity](imgs/review_polarity_bus.png)
+
+## Specifications
+
+Generative AI was used to fill in repetitive blocks of code.

@@ -12,6 +12,7 @@ from internals.tools import *
 
 GET_DATA = False
 GRAPH_VAR = "polarity"
+SIZE = False
 
 if GET_DATA:
     places = places("London", "restaurant", "en")
@@ -32,8 +33,19 @@ with open("../data/london_restaurants_cleaned.txt", "r") as f:
     polarities = json.load(f)
 
 df = pd.DataFrame(polarities, columns=["polarity", "count", "lat", "lng"])
-plt.figure(figsize=(20, 20))
-ax = sns.scatterplot(x="lng", y="lat", hue=GRAPH_VAR, data=df, palette="coolwarm")
+
+if SIZE:
+    df['size'] = (df[GRAPH_VAR] - df[GRAPH_VAR].min()) / (df[GRAPH_VAR].max() - df[GRAPH_VAR].min()) * 75
+
+    plt.figure(figsize=(20, 20))
+    ax = sns.scatterplot(x="lng", y="lat", hue=GRAPH_VAR, data=df, palette="coolwarm", size="size", sizes=(50, 150))
+else:
+    plt.figure(figsize=(20, 20))
+    ax = sns.scatterplot(x="lng", y="lat", hue=GRAPH_VAR, data=df, palette="coolwarm")
+
+legend = ax.get_legend()
+plt.setp(legend.get_texts(), fontsize='22')
+plt.setp(legend.get_title(), fontsize='32')
 
 ctx.add_basemap(ax, crs="EPSG:4326", zoom=11)
 
